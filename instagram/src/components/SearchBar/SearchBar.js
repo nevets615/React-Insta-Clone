@@ -1,12 +1,14 @@
 import React from 'react';
 import './SearchBar.css';
+import instalogo from './instalogo.png';
+
 const SearchBar = props => {
-   
+ 
     return (
         <div className="searchBar">
-            <img src="SearchBar/instalogo.png"/>
+            <img src="instalogo.png"/>
             <div>
-        <input type="text" placeholder="Search" />
+        <input type="text" placeholder="Search" onKeyDown={props.searchPosts} />
       </div>
       <div className= "icons">
       <p>#</p>
