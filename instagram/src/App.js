@@ -1,41 +1,24 @@
-import React from 'react';
-import dummyData from './components/dummy-data'
-import SearchBar from './components/SearchBar/SearchBar'
-import PostContainer from './components/PostContainer/PostContainer'
+import React, { Component } from 'react';
 import './App.css';
+import PostPage from './components/PostContainer/PostPage';
+import LoginPage from './components/Login/Login';
+import authenticate from './components/Authentication/authenticate';
 
-class App extends React.Component {
+class App extends Component {
   constructor() {
     super();
-    this.state = {
-      data: [],
-      filteredData: []
-    };
+    this.state = {};
   }
-
-  componentDidMount() {
-    this.setState({ data: dummyData });
-  }
-  searchDataHandler = e => {
-    const data = this.state.data.filter(p => {
-      if (p.username.includes(e.target.value)) {
-        return p;
-      }
-    });
-    this.setState({ filteredData: data });
-  };
 
   render() {
     return (
       <div className="App">
-      <SearchBar 
-      searchTerm={this.state.searchTerm}
-      searchData={this.searchDataHandler}
-      />
-      <PostContainer data={this.state.data} />
-    </div>
+        <ToShow />
+      </div>
     );
   }
 }
+
+const ToShow = withConditionalRender(FirstComponent)(SecondComponent);
 
 export default App;
