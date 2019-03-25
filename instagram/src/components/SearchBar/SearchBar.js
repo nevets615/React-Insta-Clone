@@ -4,14 +4,27 @@ import compass from './compass'
 import heart from './heart'
 import person from './person'
 import instalogo from './instalogo'
-const SearchBar = props => {
+class SearchBar extends React.Component {
+  constructor(props) {
+    super(props);
+     this.state = {}
+  }
  
+  render() {
     return (
         <div className="searchBar">
             <img src={instalogo.png}/>
-            <div>
-        <input type="text" placeholder="Search" onKeyDown={props.searchPosts} />
-      </div>
+            <Form>
+          <FormGroup>
+            <Input 
+              type='search'
+              name='search'
+              id='exampleSearch'
+              onChange={this.props.searchPosts}
+              placeholder='🔍 Search'
+            />
+          </FormGroup>
+        </Form>
       <div className="searchBar-icons">
         <img src={compass} />
         <img src={heart} alt= "heart"/>
@@ -20,7 +33,7 @@ const SearchBar = props => {
         </div>
     );
 }
-
+}
 export default SearchBar;
 
 

@@ -1,35 +1,58 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import withConditionalRender from "./components/withConditionalRender";
-import FirstComponent from "./components/FirstComponent";
-import SecondComponent from "./components/SecondComponent";
+import React from 'react';
+import { Button, Form, FormGroup, Input} from 'reactstrap';
+import './Login.css';
 
-import "./styles.css";
 
-class App extends React.Component {
-  state = {
-    inputText: ""
-  };
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: ''
+    }
+  }
 
-  handleChanges = e => this.setState({ inputText: e.target.value });
+  handleInputChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
 
-  signIn = e => {
-    e.preventDefault();
-    localStorage.setItem("user", this.state.inputText);
+  handleLoginSubmit = event => {
+    const user = this.state.username;
+    localStorage.setItem('user', user);
     window.location.reload();
-  };
+  }
 
   render() {
-    return (
-      <div className="App">
-        <input
-          type="text"
-          value={this.state.inputText}
-          onChange={this.handleChanges}
-        />
-        <button onClick={this.signIn}>Sign in</button>
-      </div>
-    );
+    return(
+      <Form className='login-form'>
+        <h3>Welcome to React Insta Clone</h3>
+        <div>Please Login</div>
+        <FormGroup>
+          <Input 
+            type='text'
+            placeholder='User Name'
+            name= 'username'
+            value={this.state.username}
+            onChange={this.handleInputChange}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Input 
+            type='password'
+            placeholder='Password'
+            name='password'
+            value={this.state.password}
+            onChange={this.handleInputChange}
+          />
+          <Button onClick={this.handleLoginSubmit}>
+            Log In
+          </Button>
+        </FormGroup>
+      </Form>
+    )
   }
 }
+
 export default Login;

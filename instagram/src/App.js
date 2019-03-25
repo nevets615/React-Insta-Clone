@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import './App.css';
-import PostPage from './components/PostContainer/PostPage';
-import LoginPage from './components/Login/Login';
-import authenticate from './components/Authentication/authenticate';
-
-class App extends Component {
+import React from "react";
+import dummyData from "./components/PostContainer/dummy-data"
+import "./App.css";
+import Authenticate from "./components/Authentication/authenticate";
+import Login from "./components/Login/Login";
+import PostsPage from "./components/PostContainer/PostsPage";
+class App extends React.Component {
   constructor() {
     super();
     this.state = {};
@@ -13,12 +13,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ToShow />
+        <WithAuthenticate />
       </div>
     );
   }
 }
 
-const ToShow = withConditionalRender(FirstComponent)(SecondComponent);
+const WithAuthenticate = Authenticate(PostsPage)(Login);
 
 export default App;
