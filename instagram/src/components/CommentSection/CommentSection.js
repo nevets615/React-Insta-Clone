@@ -1,6 +1,6 @@
 import React from 'react';
 import './CommentSection.css';
-import * as Icon from 'react-feather';
+
 import { Input } from 'reactstrap';
 
 class CommentSection extends React.Component {
@@ -20,7 +20,7 @@ class CommentSection extends React.Component {
         ...this.state.comments,
         { text: this.state.comment,
           username: localStorage.getItem('user')
-          // username: 'Groucho'
+       
         }
       ],
       comment: ''
@@ -44,13 +44,7 @@ class CommentSection extends React.Component {
     return(
       <div className='commentSection'>
         <div className='likeAndComment'>
-          <div className='likeAndCommentIcons'>
-            <Icon.Heart 
-              className='icons'
-              onClick={this.increaseLikes}
-            />
-            <Icon.MessageCircle className='icons' />
-          </div>
+        
           <p>{this.state.likes} likes</p>
         </div>
         <div>

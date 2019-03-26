@@ -1,46 +1,37 @@
 import React from 'react';
-import SearchBar from './PostContainer';
-import PostContainer from './PostContainer';
-import dummyData from './dummy-data'
-
+import CommentSection from './PostContainer'
+import PostHeader from './PostContainer'
 class PostsPage extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props)
     this.state = {
-      dummyData: [],
-      searchData: []
+      CommentInput: '',
+      comments: this.props.PostsPage.comments
     }
   }
 
-  componentDidMount() {
-    this.setState({
-      dummyData: dummyData
-    })
-  }
-
-  searchBarHandler = event => {
-    const posts = this.state.dummyData.filter( post => {
-      if (post.username.includes(event.target.value)) {
-        return post
-      }
-    });
-    this.setState({
-      searchData: posts
-    })
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <SearchBar searchPosts={this.searchBarHandler}/>
-        <PostContainer postData={
-          this.state.searchData.length > 0 ?
-          this.state.searchData :
-          this.state.dummyData}/>
-
-      </div>
-    );
-  }
+render() {
+  return (
+    <div className="post-border">
+      <PostHeader
+        username={this.props.post.username}
+        thumbnailUrl={this.props.post.thumbnailUrl}
+      />
+      <div className="post-image-wrapper">
+        <img
+          alt="post thumbnail"
+          className="post-image"
+          src={this.props.post.imageUrl}
+        />
+    </div>
+      <CommentSection
+        postId={this.props.post.imageUrl}
+        comments={this.props.post.comments}
+      />
+    </div>
+  );
+}
 }
 
 export default PostsPage;
+
