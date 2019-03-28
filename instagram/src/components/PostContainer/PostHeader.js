@@ -1,36 +1,18 @@
-import React from 'react';
-import CommentSection from './PostContainer'
-import PostHeader from './PostContainer'
-class PostsPage extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      CommentInput: '',
-      comments: this.props.PostsPage.comments
-    }
-  }
+import React from "react";
 
-render() {
+const PostHeader = props => {
   return (
-    <div className="post-border">
-      <PostHeader
-        username={this.props.post.username}
-        thumbnailUrl={this.props.post.thumbnailUrl}
-      />
-      <div className="post-image-wrapper">
+    <div>
+      <div className="post-header">
         <img
-          alt="post thumbnail"
-          className="post-image"
-          src={this.props.post.imageUrl}
+          alt="post header"
+          className="post-thumb"
+          src={props.thumbnailUrl}
         />
-    </div>
-      <CommentSection
-        postId={this.props.post.imageUrl}
-        comments={this.props.post.comments}
-      />
+      </div>
+      <div>{props.username}</div>
     </div>
   );
-}
-}
+};
 
-export default PostsPage;
+export default PostHeader;

@@ -28,7 +28,7 @@ class CommentSection extends React.Component {
   }
 
   handleInputChange = event => {
-    
+    event.preventDefault()
     this.setState({
       comment: event.target.value
     })

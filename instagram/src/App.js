@@ -2,8 +2,8 @@ import React from "react";
 
 import "./App.css";
 import Authenticate from "./components/Authentication/authenticate";
-import Login from "./components/Login/Login";
-import Posts from "./components/PostContainer/Posts";
+import Login from './components/login/Login';
+import Posts from "./components/PostContainer/PostsView";
 class App extends React.Component {
   constructor() {
     super();
@@ -19,6 +19,6 @@ class App extends React.Component {
   }
 }
 
-const WithAuthenticate = Authenticate(Posts)(Login);
+const WithAuthenticate = Authenticate(Login)(Posts);
 
 export default App;

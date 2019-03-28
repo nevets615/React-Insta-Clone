@@ -1,13 +1,13 @@
 import React from "react";
-import "./PostContainer.css";
-import Posts from './Posts'
+
+import Post from './Post'
 
 
 
 const PostsContainer = props => {
     return (
       <div className="posts-container">
-        {props.posts.map(index => <Posts key={index.imageUrl} post={index} />)}
+        {props.posts.map(post => <Post key={post.imageUrl} post={post} />)}
       </div>
     );
   };

@@ -1,9 +1,10 @@
 import React from 'react';
 import './SearchBar.css';
-import compass from './compass'
-import heart from './heart'
-import person from './person'
-import instalogo from './instalogo'
+import compass from './compass.png'
+import heart from './heart.png'
+import person from './person.png'
+import instalogo from './instalogo.png'
+
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -13,22 +14,22 @@ class SearchBar extends React.Component {
   render() {
     return (
         <div className="searchBar">
-            <img src={instalogo.png}/>
-            <Form>
-          <FormGroup>
-            <Input 
+            <img src={instalogo} alt =""/>
+            <form>
+          <formGroup>
+            <input 
               type='search'
               name='search'
               id='exampleSearch'
               onChange={this.props.searchPosts}
               placeholder='🔍 Search'
             />
-          </FormGroup>
-        </Form>
+          </formGroup>
+        </form>
       <div className="searchBar-icons">
-        <img src={compass} />
-        <img src={heart} alt= "heart"/>
-        <img src={person} alt= "user"/>
+        <img src={compass} alt =""/>
+        <img src={heart} alt= "heart" />
+        <img src={person} alt= "user" />
       </div>
         </div>
     );

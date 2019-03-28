@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from './components/SearchBar/SearchBar';
+import SearchBar from '../Searchbar/SearchBar'
 import PostContainer from './PostContainer'
 import dummyData from './dummy-data'
 
@@ -37,7 +37,7 @@ class posts extends React.Component {
           this.state.searchData.length > 0 ?
           this.state.searchData :
           this.state.posts}/>
-
+    
       </div>
     );
   }
