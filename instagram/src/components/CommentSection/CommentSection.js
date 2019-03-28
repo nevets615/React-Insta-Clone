@@ -1,70 +1,74 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Comments from './Comments';
-import AddComments from './AddComments';
+import './CommentSection.css';
+
+import { Input } from 'reactstrap';
 
 class CommentSection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       comments: props.comments,
+      likes: props.likes,
       comment: ''
-    };
-  }
-
-  componentDidMount() {
-    const id = this.props.postId;
-    if (localStorage.getItem(id)) {
-      this.setState({
-        comments: JSON.parse(localStorage.getItem(this.props.postId))
-      });
-    } else {
-      this.setComments();
     }
   }
 
-  componenetWillUnmount() {
-    this.setComments();
+  addNewComment = event => {
+    event.preventDefault();
+    this.setState({
+      comments: [
+        ...this.state.comments,
+        { text: this.state.comment,
+          username: localStorage.getItem('user')
+       
+        }
+      ],
+      comment: ''
+    })
   }
 
-  setComments = () => {
-    localStorage.setItem(
-      this.props.postId,
-      JSON.stringify(this.state.comments)
-    );
-  };
+  handleInputChange = event => {
+    event.preventDefault()
+    this.setState({
+      comment: event.target.value
+    })
+  }
 
-  commentHandler = e => {
-    this.setState({ comment: e.target.value });
-  };
-
-  handleCommentSubmit = e => {
-    e.preventDefault();
-    const newComment = { text: this.state.comment, username: 'someone' };
-    const comments = this.state.comments.slice();
-    comments.push(newComment);
-    this.setState({ comments, comment: '' });
-    
-  };
+  increaseLikes = () => {
+    this.setState({
+      likes: this.state.likes + 1
+    })
+  }
 
   render() {
-    return (
-      <div>
-        {this.state.comments.map((c, i) => <Comments key={i} comment={c} />)}
-        <AddComments 
-        comment={this.state.comment}
-        submitComment={this.handleCommentSubmit}
-        changeComment={this.commentHandler}
-        />
+    return(
+      <div className='commentSection'>
+        <div className='likeAndComment'>
+        
+          <p>{this.state.likes} likes</p>
+        </div>
+        <div>
+          {this.state.comments.map((comment, i) => {
+            return (
+              <div className='comment' key={i}>
+                <h3>{comment.username}</h3>
+                <p>{comment.text}</p>
+              </div>
+            )
+          })}
+        </div>
+        <form onSubmit={this.addNewComment}>
+          <Input 
+            name='comment'
+            placeholder='Add a comment...'
+            type='text'
+            onChange={this.handleInputChange}
+            value={this.state.comment}
+          />
+        </form>
       </div>
-    );
+    )
   }
 }
-
-CommentSection.propTypes = {
-  comments: PropTypes.arrayOf(
-    PropTypes.shape({ text: PropTypes.string, username: PropTypes.string })
-  )
-};
 
 export default CommentSection;
